@@ -53,6 +53,10 @@ function todosGenerator(todosList) {
         newTodoDeleteBtn.innerHTML = 'Delete'
         newTodoDeleteBtn.setAttribute('onclick', 'removeTodo(' + todo.id + ')')
 
+        if (todo.complete) {
+            newTodoLiElem.className = 'uncompleted well'
+            newTodoCompleteBtn.innerHTML = 'UnComplete'
+        }
 
         newTodoLiElem.append(newTodoLabalElem, newTodoCompleteBtn, newTodoDeleteBtn)
 
