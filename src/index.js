@@ -15,13 +15,10 @@ function addNewTodo() {
         title: newTodoTitle,
         complete: false
     }
-
     inputElem.value = ''
-
     todosArray.push(newTodoObj)
     setLocalStorage(todosArray)
     todosGenerator(todosArray)
-
     inputElem.focus()
 }
 
@@ -30,11 +27,8 @@ function setLocalStorage(todosList) {
 }
 
 function todosGenerator(todosList) {
-
     let newTodoLiElem, newTodoLabalElem, newTodoCompleteBtn, newTodoDeleteBtn
-
     todoListElem.innerHTML = ''
-
     todosList.forEach(function (todo) {
         console.log(todo);
         newTodoLiElem = $.createElement('li')

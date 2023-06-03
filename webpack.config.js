@@ -1,40 +1,52 @@
-const path = require('path')
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports ={
-    mode:'development',
-    entry: {
-        bundle: path.resolve(__dirname, 'src/index.js'),
-        },
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name][contenthash].js',
-        clean: true,
-    },
-    devtool: 'source-map',
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'dist'), 
-        }, 
-        port: 3000,
-        open: true,
-        hot: true,
-        compress: true,
-        historyApiFallback: true,
-    },
-    module: {
-        rules: [
+module.exports = {
+  mode: 'development',
+  entry: {
+    index: './src/index.js',
+  },
+  devtool: 'inline-source-map',
+
+  devServer: {
+
+    static: './dist',
+
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Development',
+      template: './src/index.html',
+    }),
+  ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /bootstrap\.js$/,
+        use: 'script-loader',
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
           {
-            test: /\.css$/i,
-            use: ['style-loader', 'css-loader'],
+            loader: 'file-loader',
           },
         ],
       },
-      plugins: [
-        new HtmlWebpackPlugin({
-          title: 'Development',
-          filename: 'index.html',
-          template: './src/template.html',
-        }),
-      ],
-}
+    ],
+  },
+  optimization: {
+
+    runtimeChunk: 'single',
+
+  },
+};
