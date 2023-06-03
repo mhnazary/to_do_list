@@ -1,4 +1,3 @@
-
 let $ = document
 const inputElem = $.getElementById('itemInput')
 const addButton = $.getElementById('addButton')
@@ -112,10 +111,20 @@ function clearTodos() {
 
 
 window.addEventListener('load', getLocalStorage)
-addButton.addEventListener('click', addNewTodo)
+addButton.addEventListener('click', ()=> {
+  if (inputElem.value == '') {
+      
+  }else {
+       addNewTodo()
+   }
+})
 clearButton.addEventListener('click', clearTodos)
 inputElem.addEventListener('keydown', function (event) {
+   if (inputElem.value == '') {
+      
+   }else{ 
     if (event.code === 'Enter') {
         addNewTodo()
     }
+  }
 })
