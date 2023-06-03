@@ -1,4 +1,4 @@
-import './style.css';
+
 let $ = document
 const inputElem = $.getElementById('itemInput')
 const addButton = $.getElementById('addButton')
